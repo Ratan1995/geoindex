@@ -67,3 +67,40 @@ class Raster:
             f"  crs={self.crs}\n"
             ")"
         )
+    def info(self) -> str:
+        """Return a formatted summary of the raster metadata."""
+
+        return (
+            "=========================================\n"
+            "GeoIndex Raster Information\n"
+            "=========================================\n\n"
+            "File\n"
+            "-------------------------\n"
+            f"Name        : {self.path.name}\n"
+            f"Path        : {self.path}\n\n"
+            "Dimensions\n"
+            "-------------------------\n"
+            f"Width       : {self.width} pixels\n"
+            f"Height      : {self.height} pixels\n"
+            f"Bands       : {self.count}\n"
+            f"Resolution  : {self.resolution[0]} × {self.resolution[1]} m\n\n"
+            "Spatial Reference\n"
+            "-------------------------\n"
+            f"CRS         : {self.crs}\n"
+            f"Bounds      : {self.bounds}\n\n"
+            "Data\n"
+            "-------------------------\n"
+            f"Data Type   : {self.dtype}\n"
+            "========================================="
+        )
+    def read(self):
+        """
+        Read all raster bands.
+
+        Returns
+        -------
+        numpy.ndarray
+            Raster values with shape (bands, rows, columns).
+        """
+
+        return self._dataset.read()
