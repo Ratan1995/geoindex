@@ -6,137 +6,135 @@
 
 ## Overview
 
-GeoIndex is an open-source Python package designed to simplify remote sensing workflows. It provides a unified and intuitive interface for working with multispectral satellite imagery from different sensors without requiring users to remember sensor-specific band configurations.
+GeoIndex is an open-source Python package designed for remote sensing and GIS applications.
 
-The project aims to make Earth Observation analysis more accessible, reproducible, and efficient for researchers, students, and professionals.
+The goal of GeoIndex is to provide a simple and intuitive interface for working with satellite imagery from multiple sensors, including automatic sensor detection, intelligent band mapping, spectral indices, and time-series analysis.
 
----
-
-## Vision
-
-Our goal is to build a scientific software package that enables users to focus on environmental analysis rather than sensor-specific preprocessing.
-
-GeoIndex will gradually evolve into a comprehensive toolkit for:
-
-- Earth Observation preprocessing
-- Automatic sensor recognition
-- Automatic band mapping
-- Spectral index computation
-- Raster visualization
-- Batch image processing
-- Time-series analysis
-- Land Surface Phenology
-- Remote sensing utilities
+The package is currently under active development.
 
 ---
 
-## Planned Features
+## Features
 
-### Core
+Current features
 
-- GeoTIFF reading
+- Open GeoTIFF images
+- Read raster metadata
+- Read all raster bands
+- Read individual raster bands
+
+Planned features
+
 - Automatic sensor detection
 - Automatic band mapping
-- Metadata handling
-
-### Spectral Indices
-
-- NDVI
-- EVI
-- SAVI
-- MSAVI
-- GNDVI
-- NDWI
-- NBR
-- NDMI
-
-### Visualization
-
-- Raster plotting
-- Histograms
-- Color mapping
-
-### Future Development
-
-- Batch processing
+- Spectral indices (NDVI, EVI, SAVI, MSAVI, NDWI, etc.)
 - Time-series analysis
-- Phenology extraction
-- Machine learning utilities
-- Change detection
-
----
-
-## Project Status
-
-**Current Version**
-
-```
-Pre-Alpha
-```
-
-GeoIndex is currently under active development.
-
----
-
-## Development Principles
-
-This project follows several core principles.
-
-- Scientific integrity
-- Reproducible research
-- Readable code
-- Comprehensive documentation
-- Extensive testing
-- Open-source collaboration
-
-Algorithms are implemented from scientific literature and official specifications rather than copying implementations from existing software.
-
----
-
-## Roadmap
-
-- [x] Project planning
-- [ ] Core package
-- [ ] GeoTIFF reader
-- [ ] Sensor detection
-- [ ] Band mapping
-- [ ] Vegetation indices
-- [ ] Visualization
-- [ ] Batch processing
-- [ ] Time-series module
-- [ ] Phenology module
-- [ ] Version 1.0
+- Raster visualization
+- Batch processing
+- Cloud masking
+- Vegetation phenology
 
 ---
 
 ## Installation
 
-Installation instructions will be available after the first public release.
+```bash
+git clone https://github.com/Ratan1995/geoindex.git
+
+cd geoindex
+
+python -m pip install -e .
+```
+
+---
+
+## Quick Start
+
+```python
+import geoindex as gi
+
+img = gi.open(r"C:\Images\20240201.tif")
+
+print(img)
+
+data = img.read()
+
+red = img.read_band(3)
+```
+
+---
+
+## Current Output
+
+```text
+Raster(
+  path='20240201.tif',
+  size=5413 × 6007,
+  bands=4,
+  resolution=3.0 × 3.0,
+  crs=EPSG:32631
+)
+```
+
+---
+
+## Project Structure
+
+```
+geoindex/
+│
+├── io/
+├── indices/
+├── sensors/
+├── plotting/
+└── utils/
+```
+
+---
+
+## Roadmap
+
+### Version 0.1
+
+- Raster reader
+- Raster metadata
+- Read raster bands
+
+### Version 0.2
+
+- Automatic sensor detection
+- Automatic band mapping
+
+### Version 0.3
+
+- Vegetation indices
+
+### Version 0.4
+
+- Time-series processing
+
+### Version 1.0
+
+- Complete Earth Observation toolkit
 
 ---
 
 ## Documentation
 
-Documentation is currently under development.
+Documentation is under development.
 
 ---
 
 ## License
 
-This project is distributed under the MIT License.
+MIT License
 
 ---
 
 ## Author
 
-**Ratan Chandra Bhowmick**
+Ratan Chandra Bhowmick
 
 Master of Geography
 
 Remote Sensing • GIS • Earth Observation
-
----
-
-## Acknowledgements
-
-GeoIndex is being developed as an independent open-source scientific software project with the goal of supporting the remote sensing community.
