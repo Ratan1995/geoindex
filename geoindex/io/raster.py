@@ -104,3 +104,26 @@ class Raster:
         """
 
         return self._dataset.read()
+    
+    def read_band(self, band: int):
+        """
+        Read a single raster band.
+
+        Parameters
+        ----------
+        band : int
+            Band number (1-based indexing).
+
+        Returns
+        -------
+        numpy.ndarray
+            Array containing the selected band.
+        """
+
+        if band < 1 or band > self.count:
+            raise ValueError(
+                f"Band {band} does not exist. "
+                f"This raster contains {self.count} band(s)."
+            )
+
+        return self._dataset.read(band)
