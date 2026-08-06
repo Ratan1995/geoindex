@@ -1,12 +1,20 @@
 """
 GeoIndex
+========
 
-A Python package for Earth Observation preprocessing,
-spectral indices, and time-series analysis.
+A Python package for intelligent Earth Observation analysis.
+
+Author
+------
+Ratan Chandra Bhowmick
 """
 
 from .io import open
+from .core.scanner import scan
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
-__all__ = ["open"]
+__all__ = [
+    "open",
+    "scan",
+]
