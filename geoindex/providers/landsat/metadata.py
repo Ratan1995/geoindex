@@ -22,25 +22,18 @@ def find_mtl_file(path: str) -> Path:
             return file
 
     raise FileNotFoundError("MTL.txt not found.")
-    
-def read_mtl(path: str) -> dict:
+
+
+from geoindex.core.metadata import Metadata
+
+def read_mtl(path: str) -> Metadata:
     """
-    Read the Landsat MTL.txt file.
-
-    Parameters
-    ----------
-    path : str
-        Landsat product folder.
-
-    Returns
-    -------
-    dict
-        Metadata as key-value pairs.
+    Read a Landsat MTL file and return a generic Metadata object.
     """
 
     mtl_file = find_mtl_file(path)
 
-    metadata = {}
+    values = {}
 
     with open(mtl_file, "r") as f:
 
@@ -53,6 +46,13 @@ def read_mtl(path: str) -> dict:
 
             key, value = line.split("=", 1)
 
-            metadata[key.strip()] = value.strip()
+            values[key.strip()] = value.strip().replace('"', "")
 
-    return metadata
+    return Metadata(
+        spacecraft=values.get("SPACECRAFT_ID"),
+        sensor=values.get("SENSOR_ID"),
+        provider="USGS",
+        acquisition_date=values.get("DATE_ACQUIRED"),
+        processing_level=values.get("PROCESSING_LEVEL"),
+        collection=values.get("COLLECTION_NUMBER"),
+    )

@@ -1,27 +1,39 @@
 """
 Landsat Product object.
-
-Represents an official Landsat product.
 """
 
 from dataclasses import dataclass
+
+from geoindex.core.metadata import Metadata
 
 
 @dataclass
 class LandsatProduct:
     """
-    Landsat product information.
+    Represents a Landsat product.
     """
 
     name: str
+
     provider: str
+
     confidence: int
 
+    metadata: Metadata | None = None
+
     def __repr__(self) -> str:
-        return (
+
+        text = (
             "Landsat Product\n"
             "----------------\n"
             f"Name       : {self.name}\n"
             f"Provider   : {self.provider}\n"
-            f"Confidence : {self.confidence}%"
+            f"Confidence : {self.confidence}%\n"
         )
+
+        if self.metadata is not None:
+
+            text += "\n"
+            text += str(self.metadata)
+
+        return text
