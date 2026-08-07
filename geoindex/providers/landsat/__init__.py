@@ -1,3 +1,7 @@
-from .detector import is_landsat
+from .detector import detect_landsat
+from .product import LandsatProduct
 
-__all__ = ["is_landsat"]
+__all__ = [
+    "detect_landsat",
+    "LandsatProduct",
+]

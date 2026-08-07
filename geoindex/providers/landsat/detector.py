@@ -1,27 +1,15 @@
 """
 Landsat product detector.
-
-Detects whether a folder contains an official
-USGS Landsat Collection 2 product.
 """
 
 from pathlib import Path
 
+from .product import LandsatProduct
 
-def is_landsat(path: str) -> bool:
+
+def detect_landsat(path: str):
     """
-    Check whether a folder contains a Landsat product.
-
-    Parameters
-    ----------
-    path : str
-        Path to the folder.
-
-    Returns
-    -------
-    bool
-        True if the folder contains a Landsat
-        Collection 2 product.
+    Detect a Landsat Collection 2 product.
     """
 
     root = Path(path)
@@ -29,12 +17,14 @@ def is_landsat(path: str) -> bool:
     if not root.exists():
         raise FileNotFoundError(path)
 
-    for file in root.iterdir():
+    filenames = {f.name for f in root.iterdir() if f.is_file()}
 
-        if (
-            file.is_file()
-            and file.name.endswith("_MTL.txt")
-        ):
-            return True
+    if any(name.endswith("_MTL.txt") for name in filenames):
 
-    return False
+        return LandsatProduct(
+            name="Landsat Collection 2",
+            provider="USGS",
+            confidence=100,
+        )
+
+    return None
