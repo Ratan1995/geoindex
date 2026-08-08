@@ -134,5 +134,7 @@ MIT License
 ## Author
 
 Ratan Chandra Bhowmick
+
 Master of Geography
+
 Vrije Universiteit Brussel and KU Leuven
