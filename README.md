@@ -134,7 +134,5 @@ MIT License
 ## Author
 
 Ratan Chandra Bhowmick
-
 Master of Geography
-
-Remote Sensing • GIS • Earth Observation
+Vrije Universiteit Brussel and KU Leuven
