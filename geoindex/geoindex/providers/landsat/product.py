@@ -1,8 +1,5 @@
 """
-Generic Earth Observation Product.
-
-Base class for all satellite products
-supported by GeoIndex.
+Landsat Product object.
 """
 
 from dataclasses import dataclass
@@ -11,24 +8,27 @@ from geoindex.core.metadata import Metadata
 
 
 @dataclass
-class Product:
+class LandsatProduct:
     """
-    Generic Earth Observation product.
+    Represents a Landsat product.
     """
 
     name: str
 
     provider: str
 
+    confidence: int
+
     metadata: Metadata | None = None
 
     def __repr__(self) -> str:
 
         text = (
-            "Product\n"
-            "-------\n"
-            f"Name     : {self.name}\n"
-            f"Provider : {self.provider}\n"
+            "Landsat Product\n"
+            "----------------\n"
+            f"Name       : {self.name}\n"
+            f"Provider   : {self.provider}\n"
+            f"Confidence : {self.confidence}%\n"
         )
 
         if self.metadata is not None:
